@@ -9,15 +9,19 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import ru.rinastachel.mappy.BuildConfig;
-import ru.rinastachel.mappy.database.dao.TypeDao;
-import ru.rinastachel.mappy.database.entity.Type;
+import ru.rinastachel.mappy.database.dao.CategoryDao;
+import ru.rinastachel.mappy.database.dao.TaskDao;
+import ru.rinastachel.mappy.database.entity.table.CategoryTable;
+import ru.rinastachel.mappy.database.entity.table.TaskTable;
 
 
-@Database(entities = {Type.class}, version = BuildConfig.VERSION_CODE)
+@Database(entities = {TaskTable.class, CategoryTable.class},
+        version = BuildConfig.VERSION_CODE, exportSchema = false)
 public abstract class SimpleRoomDatabase extends RoomDatabase {
 
     //Daos
-    public abstract TypeDao typeDao();
+    public abstract TaskDao taskDao();
+    public abstract CategoryDao categoryDao();
 
     private static SimpleRoomDatabase instance;
 
@@ -32,7 +36,7 @@ public abstract class SimpleRoomDatabase extends RoomDatabase {
                                 @Override
                                 public void onOpen (@NonNull SupportSQLiteDatabase db){
                                     super.onOpen(db);
-                                    new DatabaseOpenerAsync(instance).execute();
+                                    //new DatabaseOpenerAsync(instance).execute();
                                 }
                             })
                             .build();
@@ -44,23 +48,35 @@ public abstract class SimpleRoomDatabase extends RoomDatabase {
 
     private static class DatabaseOpenerAsync extends AsyncTask<Void, Void, Void> {
 
-        private final TypeDao mDao;
+        private final TaskDao mTaskDao;
+        private final CategoryDao mCategoryDao;
 
         DatabaseOpenerAsync(SimpleRoomDatabase db) {
-            mDao = db.typeDao();
+            mTaskDao = db.taskDao();
+            mCategoryDao = db.categoryDao();
         }
 
         @Override
         protected Void doInBackground(final Void... params) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-            mDao.deleteAll();
+            mTaskDao.deleteAll();
+            mCategoryDao.deleteAll();
 
-            for (int i = 0; i < 10; i++) {
-                Type type = new Type();
-                type.setName("Name " + i);
-                mDao.insert(type);
+            for (int i = 0; i < 3; i++) {
+                CategoryTable cat = new CategoryTable();
+                cat.setTitle("CategoryTable " + i);
+                mCategoryDao.insert(cat);
             }
+
+            for (int i = 0; i < 5; i++) {
+                TaskTable type = new TaskTable();
+                type.setTitle("Name " + i);
+                type.setCategoryId(2);
+                mTaskDao.insert(type);
+            }
+
+
 
             return null;
         }

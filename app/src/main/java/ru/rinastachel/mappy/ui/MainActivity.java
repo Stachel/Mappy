@@ -22,14 +22,15 @@ import android.view.View;
 import java.util.List;
 
 import ru.rinastachel.mappy.R;
-import ru.rinastachel.mappy.adapter.TypeListAdapter;
-import ru.rinastachel.mappy.database.entity.Type;
-import ru.rinastachel.mappy.model.TypeViewModel;
+import ru.rinastachel.mappy.adapter.TaskListAdapter;
+import ru.rinastachel.mappy.database.entity.Task;
+import ru.rinastachel.mappy.database.entity.table.TaskTable;
+import ru.rinastachel.mappy.model.TaskViewModel;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TypeViewModel mTypeViewModel;
-    private TypeListAdapter adapter;
+    private TaskViewModel mTypeViewModel;
+    private TaskListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type t = new Type();
-                t.setName("Add from activity");
+                TaskTable t = new TaskTable();
+                t.setTitle("Add from activity");
                 mTypeViewModel.insert(t);
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -59,17 +60,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mTypeViewModel = ViewModelProviders.of(this).get(TypeViewModel.class);
+        mTypeViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
 
-        mTypeViewModel.getAllTypes().observe(this, new Observer<List<Type>>() {
+        mTypeViewModel.getTasks().observe(this, new Observer<List<Task>>() {
             @Override
-            public void onChanged(@Nullable final List<Type> words) {
+            public void onChanged(@Nullable final List<Task> words) {
                 adapter.setData(words);
             }
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        adapter = new TypeListAdapter(this);
+        adapter = new TaskListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

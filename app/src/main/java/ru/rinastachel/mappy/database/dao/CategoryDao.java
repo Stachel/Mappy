@@ -8,21 +8,20 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import ru.rinastachel.mappy.database.entity.Type;
-
+import ru.rinastachel.mappy.database.entity.table.CategoryTable;
 
 @Dao
-public interface TypeDao {
+public interface CategoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Type type);
+    void insert(CategoryTable type);
 
-    @Query("DELETE FROM Type")
+    @Query("DELETE FROM Category")
     void deleteAll();
 
-    @Query("SELECT * from Type ORDER BY id DESC")
-    LiveData<List<Type>> getLiveDataAllTypes();
+    @Query("SELECT * from Category ORDER BY id DESC")
+    LiveData<List<CategoryTable>> getCategories();
 
-    @Query("SELECT COUNT(*) from Type")
+    @Query("SELECT COUNT(*) from Category")
     LiveData<Integer> getCount();
 }
