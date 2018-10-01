@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 TaskTable t = new TaskTable();
                 t.setTitle("Add from activity");
+                t.setCategoryId(2);
                 mTypeViewModel.insert(t);
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
