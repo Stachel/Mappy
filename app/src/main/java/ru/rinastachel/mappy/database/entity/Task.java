@@ -1,10 +1,9 @@
 package ru.rinastachel.mappy.database.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.TypeConverters;
-
 import java.util.Date;
 
+import androidx.room.ColumnInfo;
+import androidx.room.TypeConverters;
 import ru.rinastachel.mappy.database.TypesConverter;
 import ru.rinastachel.mappy.database.entity.table.TaskTable;
 

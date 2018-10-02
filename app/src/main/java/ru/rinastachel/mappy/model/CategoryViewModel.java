@@ -1,11 +1,11 @@
 package ru.rinastachel.mappy.model;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import ru.rinastachel.mappy.database.entity.table.CategoryTable;
 import ru.rinastachel.mappy.database.repo.CategoryRepository;
 

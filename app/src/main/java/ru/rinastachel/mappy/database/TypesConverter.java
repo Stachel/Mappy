@@ -1,9 +1,9 @@
 package ru.rinastachel.mappy.database;
 
-import android.arch.persistence.room.TypeConverter;
 
 import java.util.Date;
 
+import androidx.room.TypeConverter;
 import ru.rinastachel.mappy.database.entity.table.TaskTable;
 
 public class TypesConverter {
