@@ -34,6 +34,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TaskViewModel mTypeViewModel;
     private TaskListAdapter adapter;
 
+    //TODO
+    // use it
+    // https://habr.com/post/309200/
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
