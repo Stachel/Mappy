@@ -46,7 +46,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TypeVi
             }
 
             holder.title.setText(current.getTitle());
-            holder.desc.setText(current.getDesc());
             holder.category.setText(current.getCategoryName());
         } else {
             // Covers the case of data not being ready yet.
@@ -72,14 +71,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TypeVi
         private final View priority;
         private final TextView category;
         private final TextView title;
-        private final TextView desc;
 
         private TypeViewHolder(View itemView) {
             super(itemView);
             priority = itemView.findViewById(R.id.priority);
             category = itemView.findViewById(R.id.category);
             title = itemView.findViewById(R.id.title);
-            desc = itemView.findViewById(R.id.desc);
         }
     }
 }
