@@ -1,7 +1,6 @@
 package ru.rinastachel.mappy.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,18 +32,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TypeVi
     public void onBindViewHolder(TypeViewHolder holder, int position) {
         if (mTasks != null) {
             Task current = mTasks.get(position);
-            switch (current.getPriority()) {
-                case HIGH:
-                    holder.priority.setBackgroundColor(Color.RED);
-                    break;
-                case NORMAL:
-                    holder.priority.setBackgroundColor(Color.GREEN);
-                    break;
-                default:
-                    holder.priority.setBackgroundColor(Color.GRAY);
-                    break;
-            }
-
             holder.title.setText(current.getTitle());
             holder.category.setText(current.getCategoryName());
         } else {
@@ -68,13 +55,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TypeVi
     }
 
     class TypeViewHolder extends RecyclerView.ViewHolder {
-        private final View priority;
         private final TextView category;
         private final TextView title;
 
         private TypeViewHolder(View itemView) {
             super(itemView);
-            priority = itemView.findViewById(R.id.priority);
             category = itemView.findViewById(R.id.category);
             title = itemView.findViewById(R.id.title);
         }

@@ -13,10 +13,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/colorAccent"
         android:gravity="center"
         android:text="bottom_sheet_peek"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:layout_width="match_parent"

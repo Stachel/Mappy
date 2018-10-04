@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //TODO
     // use it
-    // https://habr.com/post/309200/
+    // https://github.com/miguelhincapie/CustomBottomSheetBehavior
 
 
     @Override
